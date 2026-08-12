@@ -1,23 +1,31 @@
 import java.util.Scanner;
+
 public class GCDandLCM {
-    public static int gcd(int a, int b) {
-        while (b != 0) {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
-    }
-    public static int lcm(int a, int b) {
-        return a * (b / gcd(a, b));
-    }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+
         System.out.print("Enter two numbers: ");
-        int num1 = sc.nextInt();
-        int num2 = sc.nextInt();
-        int gcd = gcd(num1, num2);
-        int lcm = lcm(num1, num2);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        int gcd = 1;
+
+        // Find GCD
+        for (int i = 1; i <= Math.min(a, b); i++) {
+            if (a % i == 0 && b % i == 0) {
+                gcd = i;
+            }
+        }
+
+        // Find LCM
+        int lcm = Math.max(a, b);
+
+        while (lcm % a != 0 || lcm % b != 0) {
+            lcm++;
+        }
+
         System.out.println("GCD: " + gcd);
         System.out.println("LCM: " + lcm);
     }
